@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Checkbox } from "./checkbox";
+import PopoverDemo from "@/components/ui/PopoverDemo";
 
 const meta = {
-  title: "shadcn/checkbox",
-  component: Checkbox,
+  title: "shadcn/popover",
+  component: PopoverDemo,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
   argTypes: {},
-} satisfies Meta<typeof Checkbox>;
+} satisfies Meta<typeof PopoverDemo>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

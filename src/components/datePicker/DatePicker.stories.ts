@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Checkbox } from "./checkbox";
+import { DatePickerDemo } from "./DatePicker";
 
 const meta = {
-  title: "shadcn/checkbox",
-  component: Checkbox,
+  title: "shadcn/date picker",
+  component: DatePickerDemo,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
   argTypes: {},
-} satisfies Meta<typeof Checkbox>;
+} satisfies Meta<typeof DatePickerDemo>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

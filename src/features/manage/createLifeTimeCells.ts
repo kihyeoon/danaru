@@ -36,26 +36,23 @@ export function createTimeFrames(
   const today = new Date();
   let currentTimeFrameStart = new Date(startDate);
   while (currentTimeFrameStart < endDate) {
-    let currentTimeFrameEnd = new Date(currentTimeFrameStart);
+    let currentTimeFrameEnd = new Date(currentTimeFrameStart.getTime() - 1);
 
     switch (timeFrameType) {
       case "week":
         currentTimeFrameEnd.setDate(currentTimeFrameStart.getDate() + 7);
-        currentTimeFrameEnd = new Date(currentTimeFrameEnd.getTime() - 1);
         break;
       case "month":
         currentTimeFrameEnd.setMonth(currentTimeFrameStart.getMonth() + 1);
-        currentTimeFrameEnd = new Date(currentTimeFrameEnd.getTime() - 1);
         break;
       case "year":
         currentTimeFrameEnd.setFullYear(
           currentTimeFrameStart.getFullYear() + 1,
         );
-        currentTimeFrameEnd = new Date(currentTimeFrameEnd.getTime() - 1);
         break;
     }
 
-    const dateRange = `${currentTimeFrameStart.getFullYear()}.${currentTimeFrameStart.getUTCMonth() + 1}.${currentTimeFrameStart.getUTCDate()} ~ ${currentTimeFrameEnd.getFullYear()}.${currentTimeFrameEnd.getUTCMonth() + 1}.${currentTimeFrameEnd.getUTCDate()}`;
+    const dateRange = `${currentTimeFrameStart.getUTCFullYear()}.${currentTimeFrameStart.getUTCMonth() + 1}.${currentTimeFrameStart.getUTCDate()} ~ ${currentTimeFrameEnd.getUTCFullYear()}.${currentTimeFrameEnd.getUTCMonth() + 1}.${currentTimeFrameEnd.getUTCDate()}`;
 
     const currentAge = Math.floor(
       (currentTimeFrameStart.getTime() - startDate.getTime()) /

@@ -18,11 +18,11 @@ interface TimeFramesArray {
 }
 
 export function createTimeFrames(
-  birthday: string,
+  birthday: Date | string,
   expectedAge: number,
-  timeFrameType: TimeFrameType = "week",
+  timeFrameType: TimeFrameType = "month",
 ): TimeFramesArray {
-  const startDate = new Date(birthday);
+  const startDate = birthday instanceof Date ? birthday : new Date(birthday);
   const endDate = new Date(startDate);
   endDate.setFullYear(endDate.getFullYear() + expectedAge);
 
@@ -52,7 +52,7 @@ export function createTimeFrames(
         break;
     }
 
-    const dateRange = `${currentTimeFrameStart.getUTCFullYear()}.${currentTimeFrameStart.getUTCMonth() + 1}.${currentTimeFrameStart.getUTCDate()} ~ ${currentTimeFrameEnd.getUTCFullYear()}.${currentTimeFrameEnd.getUTCMonth() + 1}.${currentTimeFrameEnd.getUTCDate()}`;
+    const dateRange = `${currentTimeFrameStart.getFullYear()}.${currentTimeFrameStart.getMonth() + 1}.${currentTimeFrameStart.getDate()} ~ ${currentTimeFrameEnd.getFullYear()}.${currentTimeFrameEnd.getMonth() + 1}.${currentTimeFrameEnd.getDate()}`;
 
     const currentAge = Math.floor(
       (currentTimeFrameStart.getTime() - startDate.getTime()) /

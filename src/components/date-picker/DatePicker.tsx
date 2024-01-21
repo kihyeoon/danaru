@@ -15,16 +15,19 @@ import {
 
 import { cn } from "@/lib/utils";
 
-export function DatePickerDemo() {
-  const [date, setDate] = React.useState<Date>();
+interface Props {
+  date?: Date;
+  setDate?: React.Dispatch<React.SetStateAction<Date | undefined>>;
+}
 
+export function DatePicker({ date, setDate }: Props) {
   return (
     <Popover>
       <PopoverTrigger asChild>
         <Button
           variant={"outline"}
           className={cn(
-            "w-[240px] justify-start text-left font-normal",
+            "w-[166px] justify-start text-left font-normal",
             !date && "text-muted-foreground",
           )}
         >

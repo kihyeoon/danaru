@@ -1,4 +1,4 @@
-import Dot from "@/components/dotHeatMapChart/dot/Dot";
+import Dot from "@/components/dot-heatmap-chart/dot/Dot";
 import {
   HoverCard,
   HoverCardContent,
@@ -11,7 +11,7 @@ import {
 } from "@/features/manage/createLifeTimeCells";
 
 interface DotHeatMapChartProps {
-  birthDate: string;
+  birthDate: string | Date;
   years: number;
   timeFrameType?: TimeFrameType;
 }

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import Dot from "./Dot";
+import Dot from "@/components/dot-heatmap-chart/dot/Dot";
 
 const meta = {
   title: "Dot Heatmap chart/dot",

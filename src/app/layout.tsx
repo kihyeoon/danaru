@@ -1,9 +1,11 @@
-import type { Metadata } from "next";
-import { Open_Sans } from "next/font/google";
-import "./globals.css";
-import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import type { Metadata } from "next";
+import { Open_Sans } from "next/font/google";
+
+import { cn } from "@/lib/utils";
+
+import "./globals.css";
 
 const fontSans = Open_Sans({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -21,8 +23,8 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
+          "min-h-screen bg-background bg-neutral-50 font-sans antialiased",
+          fontSans.variable,
         )}
       >
         {children}

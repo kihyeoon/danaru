@@ -27,7 +27,7 @@ export default function DotHeatMapChart({
   } = createTimeFrames(birthDate, years, timeFrameType);
 
   return (
-    <div className="grid w-full grid-cols-[repeat(70,_1fr)] gap-1">
+    <div className="grid w-full grid-cols-[repeat(auto-fill,_minmax(12px,_1fr))] gap-1">
       {timeFrames.map(({ type, dateRange, age }, index) => (
         <HoverCard key={`${index}-${dateRange}`}>
           <HoverCardTrigger className="cursor-pointer">

@@ -45,6 +45,7 @@ export function DatePicker({ date, setDate }: Props) {
           captionLayout="dropdown-buttons"
           selected={date}
           onSelect={setDate}
+          defaultMonth={date}
           fromYear={1900}
           toYear={new Date().getFullYear()}
           locale={ko}

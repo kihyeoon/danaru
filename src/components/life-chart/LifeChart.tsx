@@ -16,11 +16,23 @@ import {
 
 import { TimeFrameType } from "@/features/manage/createLifeTimeCells";
 
+interface ChartOptions {
+  date: Date;
+  years: number;
+  timeframeType: TimeFrameType;
+  isReady: boolean;
+}
+
 export default function LifeChart() {
   const [date, setDate] = useState<Date>();
   const [years, setYears] = useState<number>(100);
   const [timeframeType, setTimeFrameType] = useState<TimeFrameType>("month");
-  const [isReady, setIsReady] = useState<boolean>(false);
+  const [chartOptions, setChartOptions] = useState<ChartOptions>({
+    date: new Date(),
+    years: 100,
+    timeframeType: "month",
+    isReady: false,
+  });
 
   const onYearsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setYears(Number(e.target.value));
@@ -30,48 +42,57 @@ export default function LifeChart() {
     setTimeFrameType(value);
   };
 
-  const onReady = () => {
+  const handleSubmit = () => {
     if (!date) return;
-    setIsReady(true);
+    setChartOptions({
+      date,
+      years,
+      timeframeType,
+      isReady: true,
+    });
   };
 
   return (
     <>
-      {isReady && date ? (
-        <DotHeatMapChart
-          birthDate={date}
-          years={years}
-          timeFrameType={timeframeType}
+      <div className="mb-3 h-full w-full rounded-md border border-input p-4">
+        {chartOptions.isReady ? (
+          <DotHeatMapChart
+            birthDate={date || chartOptions.date}
+            years={years}
+            timeFrameType={timeframeType}
+          />
+        ) : (
+          <DotHeatMapChart
+            birthDate={chartOptions.date}
+            years={chartOptions.years}
+            timeFrameType={chartOptions.timeframeType}
+          />
+        )}
+      </div>
+      <form className="flex flex-col gap-2">
+        <Input
+          className="w-[166px] text-left font-normal"
+          type="number"
+          placeholder="기대 수명"
+          value={years}
+          onChange={onYearsChange}
         />
-      ) : (
-        <DotHeatMapChart
-          birthDate={new Date()}
-          years={100}
-          timeFrameType="month"
-        />
-      )}
-      <Input
-        className="w-[166px] text-left font-normal"
-        type="number"
-        placeholder="기대 수명"
-        value={years}
-        onChange={onYearsChange}
-      />
-      <Select
-        onValueChange={onTimeFrameTypeChange}
-        defaultValue={timeframeType}
-      >
-        <SelectTrigger className="w-[166px]">
-          <SelectValue placeholder="형식" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="week">주</SelectItem>
-          <SelectItem value="month">월</SelectItem>
-          <SelectItem value="year">년</SelectItem>
-        </SelectContent>
-      </Select>
-      <DatePicker date={date} setDate={setDate} />
-      <Button onClick={onReady}>차트 보기</Button>
+        <Select
+          onValueChange={onTimeFrameTypeChange}
+          defaultValue={timeframeType}
+        >
+          <SelectTrigger className="w-[166px]">
+            <SelectValue placeholder="형식" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="week">주</SelectItem>
+            <SelectItem value="month">월</SelectItem>
+            <SelectItem value="year">년</SelectItem>
+          </SelectContent>
+        </Select>
+        <DatePicker date={date} setDate={setDate} />
+        <Button onClick={handleSubmit}>차트 보기</Button>
+      </form>
     </>
   );
 }

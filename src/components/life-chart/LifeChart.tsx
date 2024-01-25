@@ -42,7 +42,8 @@ export default function LifeChart() {
     setTimeFrameType(value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     if (!date) return;
     setChartOptions({
       date,

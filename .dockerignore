@@ -1,0 +1,51 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Build outputs
+.next
+out
+build
+dist
+storybook-static
+
+# Development
+.git
+.github
+.gitignore
+.vscode
+.idea
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Testing & Documentation
+coverage
+*.md
+
+# Storybook
+.storybook
+**/*.stories.ts
+**/*.stories.tsx
+
+# Config files
+.eslintrc*
+.prettierrc*
+tsconfig.tsbuildinfo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Debug logs
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Docker
+Dockerfile*
+docker-compose*
+.docker
